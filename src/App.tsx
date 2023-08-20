@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NavBar from "./layout/NavBar";
+import {
+    BrowserRouter,
+    Routes,
+    Route, Navigate,
+} from "react-router-dom";
+import UserList from "./components/UserList";
+import CounterRedux from "./components/CounterRedux";
+import EmployeesRedux from "./components/EmployeesRedux";
+import UserListRedux from "./components/UserListRedux";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    return (
+        <React.Fragment>
+
+            <BrowserRouter>
+                <NavBar/>
+                <Routes>
+                    <Route path="/" element={<Navigate to={'/counter'}/>}/>
+                    <Route path="/counter" element={<CounterRedux/>}/>
+                    <Route path="/employees" element={<EmployeesRedux/>}/>
+                    <Route path="/users" element={<UserListRedux/>}/>
+                </Routes>
+            </BrowserRouter>
+        </React.Fragment>
+    );
 }
 
 export default App;
